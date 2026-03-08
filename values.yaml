@@ -25,10 +25,11 @@ env:
   REDIS_PORT: "6379"
   REDIS_PASSWORD: ""
   LOG_LEVEL: "info"
+  JAVA_TOOL_OPTIONS: "-Xms256m -Xmx400m -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:+ParallelRefProcEnabled -XX:MaxMetaspaceSize=128m -Xss512k -XX:+ExitOnOutOfMemoryError"
 resources:
-  limits:
-    memory: 512Mi
-    cpu: 500m
   requests:
-    cpu: 250m
-    memory: 256Mi
+    cpu: 150m
+    memory: 450Mi
+  limits:
+    cpu: 500m
+    memory: 800Mi
