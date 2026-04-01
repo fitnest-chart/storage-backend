@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: ghcr.io/fitnest-backend/storage-service
-  tag: "development-c4efe2b"
+  tag: "development-51d2836"
   pullPolicy: Always
   imagePullSecrets:
     - name: ghcr-secret
