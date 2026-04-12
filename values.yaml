@@ -1,7 +1,9 @@
+# values.yaml for storage-backend
+
 replicaCount: 1
 
 image:
-  repository: ghcr.io/fitnest-backend/storage-service
+  repository: ghcr.io/fitnest-code/storage-backend
   tag: "development-382cb05"
   pullPolicy: Always
   imagePullSecrets:
@@ -14,12 +16,12 @@ service:
 networkPolicy:
   enabled: true
   allowedServices:
-    - user-service
-    - catalog-service
-    - notifications-service
-    - fitness-plan-service
-    - payment-service
-    - support-service
+    - user-backend
+    - catalog-backend
+    - notifications-backend
+    - fitness-plan-backend
+    - payment-backend
+    - support-backend
     # api-gateway is already hardcoded in the policy template
 
 env:
