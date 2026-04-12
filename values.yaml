@@ -1,26 +1,27 @@
 replicaCount: 1
+
 image:
   repository: ghcr.io/fitnest-backend/storage-service
   tag: "development-382cb05"
   pullPolicy: Always
   imagePullSecrets:
     - name: ghcr-secret
+
 service:
   type: ClusterIP
   port: 9090
-istio:
+
+networkPolicy:
   enabled: true
-  mtls:
-    mode: STRICT
-  authorization:
-    internalCallers:
-      - "cluster.local/ns/fitnest-dev/sa/user-service"
-      - "cluster.local/ns/fitnest-dev/sa/catalog-service"
-      - "cluster.local/ns/fitnest-dev/sa/notifications-service"
-      - "cluster.local/ns/fitnest-dev/sa/fitness-plan-service"
-      - "cluster.local/ns/fitnest-dev/sa/payment-service"
-      - "cluster.local/ns/fitnest-dev/sa/support-service"
-      - "cluster.local/ns/fitnest-dev/sa/api-gateway"
+  allowedServices:
+    - user-service
+    - catalog-service
+    - notifications-service
+    - fitness-plan-service
+    - payment-service
+    - support-service
+    # api-gateway is already hardcoded in the policy template
+
 env:
   STORAGE_EMAIL: "fitnestazerbaijan@gmail.com"
   SPRINGDOC_SERVER_URL: "https://dev-api.fitnest.az"
@@ -30,12 +31,11 @@ env:
   REDIS_PORT: "6380"
   REDIS_PASSWORD: "ChangeMeDevRedis!"
   LOG_LEVEL: "info"
-  # gRPC TLS / mTLS options for internal service-to-service calls (used by gRPC server/clients)
   GRPC_USE_TLS: "false"
   GRPC_TLS_SERVER_CERT: "/etc/certs/tls.crt"
   GRPC_TLS_SERVER_KEY: "/etc/certs/tls.key"
   GRPC_TLS_CA_CERT: "/etc/certs/ca.crt"
-  GRPC_REQUIRE_CLIENT_CERT: "false" # set to true to require client certificates (mTLS)
+  GRPC_REQUIRE_CLIENT_CERT: "false"
   JAVA_TOOL_OPTIONS: >
     -Xms256m -Xmx512m -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:+ParallelRefProcEnabled -XX:MaxMetaspaceSize=256m -XX:+AlwaysPreTouch -Xss512k -XX:+ExitOnOutOfMemoryError
 
