@@ -1,18 +1,15 @@
 # values.yaml for storage-backend
 
 replicaCount: 1
-
 image:
   repository: ghcr.io/fitnest-code/storage-backend
-  tag: "development-382cb05"
+  tag: "development-a886530"
   pullPolicy: Always
   imagePullSecrets:
     - name: ghcr-secret
-
 service:
   type: ClusterIP
   port: 9090
-
 networkPolicy:
   enabled: true
   allowedServices:
@@ -23,7 +20,6 @@ networkPolicy:
     - payment-backend
     - support-backend
     # api-gateway is already hardcoded in the policy template
-
 env:
   STORAGE_EMAIL: "fitnestazerbaijan@gmail.com"
   SPRINGDOC_SERVER_URL: "https://dev-api.fitnest.az"
