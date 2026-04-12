@@ -19,7 +19,7 @@ networkPolicy:
     - fitness-plan-backend
     - payment-backend
     - support-backend
-    # api-gateway is already hardcoded in the policy template
+    # gateway-backend is already hardcoded in the policy template
 env:
   STORAGE_EMAIL: "fitnestazerbaijan@gmail.com"
   SPRINGDOC_SERVER_URL: "https://dev-api.fitnest.az"
