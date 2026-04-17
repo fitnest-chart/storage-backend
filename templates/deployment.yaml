@@ -28,6 +28,16 @@ spec:
               containerPort: {{ .Values.service.port }}
               protocol: TCP
           env:
+            - name: STORAGE_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.envSecrets.STORAGE_EMAIL.secretName }}
+                  key: {{ .Values.envSecrets.STORAGE_EMAIL.secretKey }}
+            - name: STORAGE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.envSecrets.STORAGE_PASSWORD.secretName }}
+                  key: {{ .Values.envSecrets.STORAGE_PASSWORD.secretKey }}
             {{- range $key, $value := .Values.env }}
             - name: {{ $key }}
               value: {{ $value | quote }}
