@@ -37,10 +37,10 @@ env:
 
 envSecrets:
   STORAGE_EMAIL:
-    secretName: fitnest-development
+    secretName: mega-storage
     secretKey: storage-email
   STORAGE_PASSWORD:
-    secretName: fitnest-development
+    secretName: mega-storage
     secretKey: storage-password
 
 resources:
