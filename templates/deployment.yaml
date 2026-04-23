@@ -31,9 +31,15 @@ spec:
             - name: VAULT_ADDR
               value: "http://10.0.0.4:8200"
             - name: VAULT_ROLE_ID
-              value: "80151ff6-9ffb-e807-fe0d-cafa5e286418"
+              valueFrom:
+                secretKeyRef:
+                  name: vault-approle-secret
+                  key: role-id
             - name: VAULT_SECRET_ID
-              value: "ecfeb467-e068-1ef0-2220-89dd153c5a70"
+              valueFrom:
+                secretKeyRef:
+                  name: vault-approle-secret
+                  key: secret-id
             - name: VAULT_ENV
               value: "{{ .Values.vaultEnv | default "development" }}"
             {{- if .Values.env }}
