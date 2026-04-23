@@ -44,5 +44,11 @@ spec:
               value: "{{ .Values.vaultEnv | default "development" }}"
             - name: ENTRY_POINT
               value: "./server.grpc.js"
+            {{- if .Values.env }}
+            {{- range $key, $value := .Values.env }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
