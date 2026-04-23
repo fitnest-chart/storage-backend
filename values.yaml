@@ -1,3 +1,4 @@
+vaultEnv: dev
 # values.yaml for storage-backend
 
 replicaCount: 1
@@ -25,7 +26,6 @@ env:
   STORAGE_PORT: "9090"
   REDIS_HOST: "10.0.0.4"
   REDIS_PORT: "6380"
-  REDIS_PASSWORD: "ChangeMeDevRedis!"
   LOG_LEVEL: "info"
   GRPC_USE_TLS: "false"
   GRPC_TLS_SERVER_CERT: "/etc/certs/tls.crt"
@@ -35,18 +35,3 @@ env:
   JAVA_TOOL_OPTIONS: >
     -Xms256m -Xmx512m -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:+ParallelRefProcEnabled -XX:MaxMetaspaceSize=256m -XX:+AlwaysPreTouch -Xss512k -XX:+ExitOnOutOfMemoryError
 
-envSecrets:
-  STORAGE_EMAIL:
-    secretName: mega-storage
-    secretKey: storage-email
-  STORAGE_PASSWORD:
-    secretName: mega-storage
-    secretKey: storage-password
-
-resources:
-  requests:
-    cpu: 11m
-    memory: 168Mi
-  limits:
-    cpu: 1000m
-    memory: 258Mi

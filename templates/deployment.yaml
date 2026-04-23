@@ -11,6 +11,16 @@ spec:
       {{- include "app.selectorLabels" . | nindent 6 }}
   template:
     metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: "fitnest-role"
+        vault.hashicorp.com/agent-inject-secret-config: "secrets/data/{{ .Chart.Name }}/{{ .Values.vaultEnv | default \"dev\" }}"
+        vault.hashicorp.com/agent-inject-template-config: |
+          {{- with secret (printf "secrets/data/%s/%s" .Chart.Name (.Values.vaultEnv | default "dev")) -}}
+          {{- range $k, $v := .Data.data }}
+          {{ $k }}={{ $v }}
+          {{- end }}
+          {{- end }}
       labels:
         {{- include "app.selectorLabels" . | nindent 8 }}
     spec:
@@ -28,19 +38,13 @@ spec:
               containerPort: {{ .Values.service.port }}
               protocol: TCP
           env:
-            - name: STORAGE_EMAIL
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.envSecrets.STORAGE_EMAIL.secretName }}
-                  key: {{ .Values.envSecrets.STORAGE_EMAIL.secretKey }}
-            - name: STORAGE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.envSecrets.STORAGE_PASSWORD.secretName }}
-                  key: {{ .Values.envSecrets.STORAGE_PASSWORD.secretKey }}
+            - name: DOTENV_CONFIG_PATH
+              value: "/vault/secrets/config"
+            {{- if .Values.env }}
             {{- range $key, $value := .Values.env }}
             - name: {{ $key }}
               value: {{ $value | quote }}
+            {{- end }}
             {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
