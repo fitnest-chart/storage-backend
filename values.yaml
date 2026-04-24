@@ -17,4 +17,4 @@ replicaCount: 1
 service:
   port: 9090
   type: ClusterIP
-vaultEnv: development
+vaultEnv: production
