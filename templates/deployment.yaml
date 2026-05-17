@@ -41,7 +41,7 @@ spec:
                   name: vault-approle-secret
                   key: secret-id
             - name: VAULT_ENV
-              value: "{{ .Values.vaultEnv | default "development" }}"
+              value: "{{ .Values.vaultEnv | default "production" }}"
             - name: ENTRY_POINT
               value: "./server.grpc.js"
           resources:
