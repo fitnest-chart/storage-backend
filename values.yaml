@@ -18,3 +18,11 @@ service:
   port: 9090
   type: ClusterIP
 vaultEnv: production
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 512Mi
+  limits:
+    cpu: 1000m
+    memory: 1024Mi
