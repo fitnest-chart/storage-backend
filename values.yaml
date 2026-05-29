@@ -3,7 +3,7 @@ image:
     - name: ghcr-secret
   pullPolicy: Always
   repository: ghcr.io/fitnest-code/storage-backend
-  tag: production-f5f7b95
+  tag: production-e7f8bca
 networkPolicy:
   allowedServices:
     - user-backend
@@ -18,7 +18,6 @@ service:
   port: 9090
   type: ClusterIP
 vaultEnv: production
-
 resources:
   requests:
     cpu: 100m
