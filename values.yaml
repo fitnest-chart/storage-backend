@@ -15,7 +15,8 @@ networkPolicy:
   enabled: true
 replicaCount: 1
 service:
-  port: 9090
+  port: 8080
+  grpcPort: 9090
   type: ClusterIP
 vaultEnv: production
 resources:
