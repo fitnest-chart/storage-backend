@@ -26,3 +26,7 @@ resources:
   limits:
     cpu: 1000m
     memory: 1024Mi
+
+podAnnotations:
+  instrumentation.opentelemetry.io/inject-java: "false"
+  instrumentation.opentelemetry.io/inject-nodejs: "fitnest-instrumentation"
