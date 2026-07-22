@@ -36,7 +36,7 @@ spec:
               protocol: TCP
           env:
             - name: VAULT_ADDR
-              value: "http://161.97.183.7:8200"
+              value: "https://vault.fitnest.az:8200"
             - name: VAULT_ROLE_ID
               valueFrom:
                 secretKeyRef:
