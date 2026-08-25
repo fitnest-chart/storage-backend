@@ -35,6 +35,8 @@ spec:
               containerPort: {{ .Values.service.grpcPort }}
               protocol: TCP
           env:
+            - name: NODE_TLS_REJECT_UNAUTHORIZED
+              value: "0"
             - name: VAULT_ADDR
               value: "https://vault.fitnest.az"
             - name: VAULT_ROLE_ID
