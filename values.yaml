@@ -3,7 +3,7 @@ image:
     - name: ghcr-secret
   pullPolicy: Always
   repository: ghcr.io/fitnest-code/storage-backend
-  tag: production-bb20564
+  tag: production-930bd02
 networkPolicy:
   allowedServices:
     - user-backend
