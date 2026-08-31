@@ -38,7 +38,7 @@ spec:
             - name: NODE_TLS_REJECT_UNAUTHORIZED
               value: "0"
             - name: VAULT_ADDR
-              value: "http://10.30.16.50:8200"
+              value: "http://vault-dev.fitnest-development.svc.cluster.local:8200"
             - name: VAULT_ROLE_ID
               valueFrom:
                 secretKeyRef:
@@ -51,6 +51,8 @@ spec:
                   key: secret-id
             - name: VAULT_ENV
               value: "{{ .Values.vaultEnv | default "production" }}"
+            - name: VAULT_SECRETS_PATH
+              value: "secrets/data/storage-backend/{{ .Values.vaultEnv | default "production" }}"
             - name: ENTRY_POINT
               value: "./server.grpc.js"
           resources:
