@@ -18,7 +18,7 @@ service:
   port: 8080
   grpcPort: 9090
   type: ClusterIP
-vaultEnv: production
+vaultEnv: development
 resources:
   requests:
     cpu: 100m
